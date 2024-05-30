@@ -67,26 +67,24 @@ public static function save(){
     $valor2=$_POST['preco_venda']*$_POST['qtd'];
     $model->dataentrada=$data;
     $model->idp=$_POST['idp'];
-    $model->idf=1;
+    $model->idf=$_POST['idf'];
     $lucros=$valor2-$valor1;
     $model->lucro=$lucros;
     $model->save();
     Middleware::auth();
-    header("Location: /Stock");
+    header("Location: /produto");
 }
 public static function quantidade(){
     include "Model/StockModel.php";
     $model=new StockModel();
     $model->qtd=$_POST['qtd'];
     $model->idstock=$_POST['idstock'];
+    $valor1=$_POST['valor_compra']*$_POST['qtd'];
+    $valor2=$_POST['preco_venda']*$_POST['qtd'];
+    $lucros=$valor2-$valor1;
+    $model->lucro=$lucros;
+    $model->idf=$_POST['idf'];
     $model->saveQtd();
-    Middleware::auth();
-    header("Location: /Stock");
-}
-public static function delete(){
-    include "Model/StockModel.php";
-    $model=new StockModel();
-    $model->delete((int) $_GET['idstock']);
     Middleware::auth();
     header("Location: /Stock");
 }

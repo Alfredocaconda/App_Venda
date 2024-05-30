@@ -99,9 +99,9 @@
     public static function carrinhoremoverId(){
         include "Model/VendaModel.php";
         $model=new VendaModel();
-        $model->removerId((int) $_GET['id_carrinho']);
+        $model->removerId((string) $_GET['codigo_barra']);
         Middleware::auth();
-        header("Location: /Venda");
+       header("Location: /Venda");
     }
 }
 ?>

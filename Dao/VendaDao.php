@@ -43,7 +43,7 @@ class VendaDao{
     #funcao para listar todos os produtos que estão no carrinho de compra
     public function selectCarrinho(){
         $sql = "SELECT idstock,id_carrinho,idp,nome,descricao,qtd,SUM(vcarrinho.quantidade) as quantidade
-        ,SUM(vcarrinho.preco) as preco,codigo_barra,nomec FROM vcarrinho GROUP BY (nome) order by id_carrinho desc";
+        ,SUM(vcarrinho.preco) as preco,codigo_barra,nomec FROM vcarrinho GROUP BY (codigo_barra) order by id_carrinho desc";
         $valor=$this->conexao->prepare($sql);
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);
@@ -106,10 +106,10 @@ class VendaDao{
         $valor->execute();
     }
     #funcao para apagar um produto no carrinho de compra apartir da id
-    public function CarrinhodeleteId(int $id_carrinho){
-        $sql="DELETE FROM carrinho WHERE id_carrinho=?";
+    public function CarrinhodeleteId(string $codigo_barra){
+        $sql="DELETE FROM carrinho WHERE codigo_barra=?";
         $valor=$this->conexao->prepare($sql);
-        $valor->bindValue(1,$id_carrinho);
+        $valor->bindValue(1,$codigo_barra);
         $valor->execute();
     }
 

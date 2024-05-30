@@ -55,10 +55,5 @@ class StockModel{
             return new StockModel();
         }*/
     }
-    public function delete(int $idstock){
-        include 'Dao/StockDao.php';
-        $dados=new StockDao();
-        $dados->delete($idstock);
-    } 
 }
 ?>

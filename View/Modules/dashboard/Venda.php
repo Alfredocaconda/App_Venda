@@ -111,6 +111,7 @@
          }
          .baixar{
             margin-top: 20px;
+            height: 100vh;
          }
          .nome{
             display:flex;
@@ -144,7 +145,7 @@
                   <p class="cor_nome"><?php echo $_SESSION['nome'] ?></p>
                        </div>   
                      <div>
-                     <a href="/logout" class="btn btn-danger">SAIR</a>
+                     <a href="/" class="btn btn-danger">SAIR</a>
                        </div>   
                   </div>
                </div>
@@ -166,6 +167,7 @@
         <tr>
             <th scope="col">NOME</th>
             <th scope="col">DESCRICAO</th>
+            <th scope="col">CODIGO</th>
             <th scope="col">PREÇO</th>
             <th scope="col">QTD</th>
         </tr>
@@ -177,10 +179,11 @@
             <input type="hidden" name="preco_venda" value="<?=$item->preco_venda?>">
             <input type="hidden" name="codigo_barra" value="<?=$item->codigo_barra?>">
             <input type="hidden" name="nomes" value="<?=$item->nome?>">
-            <td scope="col"><?=$item->nome?> </td>
-            <td scope="col"><?=$item->descricao?> </td>
-            <td scope="col"><?=number_format($item->preco_venda)."KZ"?> </td>
-            <td scope="col"><?=$item->qtd?> </td>
+            <td scope="col" style="width: 150px;"><?=$item->nome?> </td>
+            <td scope="col" style="width: 150px;"><?=$item->descricao?> </td>
+            <td scope="col" style="width: 100px;"><?=$item->codigo_barra?> </td>
+            <td scope="col"style="width: 150px;"><?=number_format($item->preco_venda)."KZ"?> </td>
+            <td scope="col" style="width: 100px;"><?=$item->qtd?> </td>
             <td scope="col" style="width: 150px;"><input type="text" name="quantidade"
             placeholder="QUANTIDADE"  ></td>
             <td scope="col" ><button class="btn btn-primary">VENDER</button></td>
@@ -212,7 +215,7 @@
             <td  width='100px'; scope="col"><?=$itens->nome?> </td>
             <td  width='100px'; scope="col"><?=$itens->quantidade?> </td>
             <td  width='100px'; scope="col"><?=number_format($itens->preco)."KZ"?> </td>
-            <td  scope="col"> <a href="/Venda/removerID?id_carrinho=<?=$itens->id_carrinho?>" class="btn btn-danger">REMOVER</a> </td>
+            <td  scope="col"> <a href="/Venda/removerID?codigo_barra=<?=$itens->codigo_barra?>" class="btn btn-danger">REMOVER</a> </td>
             <?php $soma += $itens->preco?>
          </tr>
         <?php endforeach ?>

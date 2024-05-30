@@ -68,7 +68,7 @@ class StockDao{
             $valor=$this->conexao->prepare($sql);
         }else{
             $sql="SELECT idstock,idp,idf,nome,descricao,nomec,valor_compra,codigo_barra,caducidade,qtd,dataentrada,
-            preco_venda,lucro,nomef FROM vstock where nome = ? or codigo_barra = ? ";
+            preco_venda,lucro,nomef FROM vstock where nome=? or codigo_barra=? ";
             $valor=$this->conexao->prepare($sql);
             $valor->bindValue(1,$nome);
             $valor->bindValue(2,$nome);
@@ -85,12 +85,5 @@ class StockDao{
         $valor->execute();
         return $valor->fetchObject("StockModel");
     }
-    public function delete(int $idstock){
-        $sql="DELETE FROM Stock WHERE idstock=?";
-        $valor=$this->conexao->prepare($sql);
-        $valor->bindValue(1, $idstock);
-        $valor->execute();
-    }
-   
 }
 ?>

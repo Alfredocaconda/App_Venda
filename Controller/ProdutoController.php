@@ -46,7 +46,7 @@ public static function save(){
     $model->idcategoria=$_POST['idcategoria'];
     $model->save();
     Middleware::auth();
-    header("Location: /produto");
+    header("Location: /produto/form");
 }
 public static function delete(){
     include "Model/ProdutoModel.php";

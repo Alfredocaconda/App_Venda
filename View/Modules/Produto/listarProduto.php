@@ -13,7 +13,7 @@
                         </div>
                      </div>
                      
-      <section class="content">
+      <section class="content" style="overflow-y: auto; overflow-x: hidden; height: 65vh;">
       <!--coluna-->
       <div class="col"> 
             <nav class="navbar bg-body-tertiary">

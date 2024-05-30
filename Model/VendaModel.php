@@ -35,10 +35,11 @@ class VendaModel{
         $dados=new VendaDao();
         $dados->Cancelar();
     } 
-    public function removerId(int $id_carrinho){
+    public function removerId(string $codigo_barra){
+       
         include 'Dao/VendaDao.php';
         $dados=new VendaDao();
-        $dados->CarrinhodeleteId($id_carrinho);
+        $dados->CarrinhodeleteId($codigo_barra);
     } 
   
 }

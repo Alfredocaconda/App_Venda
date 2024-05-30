@@ -8,7 +8,7 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>LISTAR OS PRODUTOS</h2>
+                              <h2>LISTAR OS PRODUTOS DO STOCK</h2>
                            </div>
                         </div>
                      </div>
@@ -31,7 +31,6 @@
         <tr>
             <th scope="col">NOME/DESCRIÇÃO/CATEGORIA</th>
             <th scope="col">QTD</th>
-            <th scope="col">ENTRADA</th>
             <th scope="col">CADUCIDADE</th>
             <th scope="col">CODIGO BARRA</th>
             <th scope="col">VALOR VENDA</th>
@@ -41,9 +40,8 @@
         </tr>
         <?php foreach ($model->linhas as $item): ?>
         <tr>
-            <td scope="col"><?=$item->nome . "/".$item->descricao."/".$item->nomec?> </td>
+            <td scope="col"><?=$item->nome ."/".$item->descricao."/".$item->nomec?> </td>
             <td scope="col"><?=$item->qtd?> </td>
-            <td scope="col"><?=$item->dataentrada?> </td>
             <td scope="col"><?=$item->caducidade?> </td>
             <td scope="col"><?=$item->codigo_barra?> </td>
             <td scope="col"><?=number_format($item->preco_venda)."kz"?>  </td>

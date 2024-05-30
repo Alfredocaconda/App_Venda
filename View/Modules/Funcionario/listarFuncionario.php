@@ -1,7 +1,7 @@
 <?php
    require_once "./View/Cabecalho/header.php";
 ?>
-               <!-- end topbar -->
+           
                <!-- dashboard inner -->
          <div class="row column_title">
             <div class="col-md-12">
@@ -19,29 +19,31 @@
             </form>
          </div>
          </nav>
-   <section class="content">
+   <section class="content" style="overflow-y: auto; overflow-x: hidden; height: 65vh;">
     <table class="table table-hover">
+       <thead>
         <tr>
-            <th  scope="col">NOME</th>
-            <th scope="col">GENERO</th>
-            <th scope="col">BILHETE</th>
-            <th scope="col">FUNÇÃO</th>
-            <th scope="col">DATA DE NASCIMENTO</th>
-            <th scope="col">TELEFONE/EMAIL</th>
-            <th scope="col">ENDEREÇO</th>
-            <th scope="col">OPÇÕES</th>
-        </tr>
+            <th >NOME</th>
+            <th >BILHETE</th>
+            <th >FUNÇÃO</th>
+            <th >DATA DE NASCIMENTO</th>
+            <th >TELEFONE/EMAIL</th>
+            <th >ENDEREÇO</th>
+            <th >OPÇÕES</th>
+         </tr>
+      </thead>
         <?php foreach ($model->linhas as $item): ?>
          <tr>
-            <td scope="col" ><?=$item->nome?> </td>
-            <td scope="col"><?=$item->genero?> </td>
-            <td scope="col"><?=$item->bilhete?> </td>
-            <td scope="col"> <?=$item->cargo?></td>
-            <td scope="col"> <?=$item->data_nascimento?></td>
-            <td scope="col"> <?=$item->telefone_email?></td>
-            <td scope="col"> <?=$item->endereco?></td>
-            <td scope="col"> <a href="/funcionario/delete?idf=<?=$item->idf?>" class="btn btn-danger">APAGAR</a></td>
-            <td scope="col"> <a href="/funcionario/form?idf=<?=$item->idf?>" class="btn btn-success">EDITAR</a></td>
+            <tbody>
+               <td ><?=$item->nome?> </td>
+               <td ><?=$item->bilhete?> </td>
+               <td > <?=$item->cargo?></td>
+               <td > <?=$item->data_nascimento?></td>
+               <td > <?=$item->telefone_email?></td>
+               <td > <?=$item->endereco?></td>
+               <td > <a href="/funcionario/delete?idf=<?=$item->idf?>" class="btn btn-danger">APAGAR</a></td>
+               <td ><a href="/funcionario/form?idf=<?=$item->idf?>" class="btn btn-success">EDITAR</a></td>
+            </tbody>
         </tr>
         <?php endforeach ?> 
     </table>

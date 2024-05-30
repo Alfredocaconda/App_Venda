@@ -25,10 +25,10 @@ try {
                      </div>
     <section class="content">
       <form action="/Stock/form/save" method="Post" enctype="multipart/form-data" class="row g-3">
-         <input type="text" name="idstock"  value="<?= $model->idstock ?>" >
-         <input type="text" name="idf"  value="<?= $_SESSION['idf'] ?>" >
-         <input type="text" name="valor_compra"  value="<?= $model->valor_compra ?>" >
-         <input type="text" name="idp"  value="<?= $model->idp ?>" >
+         <input type="hidden" name="idstock"  value="<?= $model->idstock ?>" >
+         <input type="hidden" name="idf"  value="<?= $_SESSION['idf'] ?>" >
+         <input type="hidden" name="valor_compra"  value="<?= $model->valor_compra ?>" >
+         <input type="hidden" name="idp"  value="<?= $model->idp ?>" >
          <div class="col-md-6">
             <label for="inputEmail4" class="form-label">PRODUTO/DESCRIÇÃO/CATEGORIA</label>
             <input type="text" class="form-control" name="nome" value=
