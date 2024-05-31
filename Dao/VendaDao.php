@@ -57,11 +57,12 @@ class VendaDao{
             $valor=$this->conexao->prepare($sql);
         }else{
             $sql = "SELECT idv, qtdrequerida, totalCompra, datavenda, fatura, nomef, nome 
-            FROM vvenda  where nome = ? or nomef = ? or fatura=? order by idv desc ";
+            FROM vvenda  where nome like ? or nomef like ? or fatura like ? order by idv desc ";
             $valor=$this->conexao->prepare($sql);
-            $valor->bindValue(1,$nome);
-            $valor->bindValue(2,$nome);
-            $valor->bindValue(3,$nome);
+            $pesquisar = "%$nome%"; 
+            $valor->bindValue(1,$pesquisar);
+            $valor->bindValue(2,$pesquisar);
+            $valor->bindValue(3,$pesquisar);
         }
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);

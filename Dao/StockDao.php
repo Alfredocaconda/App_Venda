@@ -52,10 +52,11 @@ class StockDao{
             $valor=$this->conexao->prepare($sql);
         }else{
             $sql="SELECT idstock,idp,idf,nome,descricao,nomec,valor_compra,codigo_barra,caducidade,qtd,dataentrada,
-            preco_venda,lucro,nomef FROM vstock where qtd>0 and nome = ? or codigo_barra = ? ";
+            preco_venda,lucro,nomef FROM vstock where qtd>0 and nome like ? or codigo_barra like ? ";
             $valor=$this->conexao->prepare($sql);
-            $valor->bindValue(1,$nome);
-            $valor->bindValue(2,$nome);
+            $pesquisar = "%$nome%"; 
+            $valor->bindValue(1,$pesquisar);
+            $valor->bindValue(2,$pesquisar);
         }
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);
@@ -68,10 +69,11 @@ class StockDao{
             $valor=$this->conexao->prepare($sql);
         }else{
             $sql="SELECT idstock,idp,idf,nome,descricao,nomec,valor_compra,codigo_barra,caducidade,qtd,dataentrada,
-            preco_venda,lucro,nomef FROM vstock where nome=? or codigo_barra=? ";
+            preco_venda,lucro,nomef FROM vstock where nome like ? or codigo_barra like ? ";
             $valor=$this->conexao->prepare($sql);
-            $valor->bindValue(1,$nome);
-            $valor->bindValue(2,$nome);
+            $pesquisar = "%$nome%"; 
+            $valor->bindValue(1,$pesquisar);
+            $valor->bindValue(2,$pesquisar);
         }
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);

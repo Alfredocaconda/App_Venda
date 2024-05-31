@@ -54,7 +54,7 @@ try {
         <label for="codigo_barra" class="form-label">CODIGO DE BARRA</label>
         <input type="text" class="form-control" id="inputAddress"
          value="<?= $model->codigo_barra ?>" name="codigo_barra"
-        placeholder="DIGITE AQUI O CODIGO DE BARRA" >
+        placeholder="DIGITE AQUI O CODIGO DE BARRA" required>
         </div>
         <div class="col-md-6">
          <br>

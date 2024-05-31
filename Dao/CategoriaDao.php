@@ -28,9 +28,10 @@ class CategoriaDao{
             $sql="SELECT * FROM vcategoria order by idcategoria desc";
             $valor=$this->conexao->prepare($sql);
         }else{
-            $sql="SELECT * FROM vcategoria where nome = ?";
+            $sql="SELECT * FROM vcategoria where nome like ?";
             $valor=$this->conexao->prepare($sql);
-            $valor->bindValue(1,$nome);
+            $pesquisar = "%$nome%"; 
+            $valor->bindValue(1,$pesquisar);
         }
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);

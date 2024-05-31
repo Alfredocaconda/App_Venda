@@ -106,8 +106,11 @@
             width: 50%;
             display:flex;
             height: 30px;
-            margin-left: 62%;
+            margin-left: 50%;
             margin-top: 50px;
+            input{
+               width: 500%;
+            }
          }
          .baixar{
             margin-top: 20px;
@@ -156,7 +159,7 @@
       <div class="pesquisa">
          <table class="table">
          <form action="/Venda" method="post">
-            <input type="text" name="nome" placeholder="PESQUISAR">
+            <input type="text" name="nome" placeholder="NOME / CODIGO DE BARRA">
             <button type="submite" class="btn btn-primary">PESQUISAR</button>
           </form>
          </table>

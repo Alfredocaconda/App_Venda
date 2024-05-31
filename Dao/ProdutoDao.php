@@ -40,10 +40,11 @@ class ProdutoDao{
         $sql="SELECT * FROM vproduto order by idp desc";
         $valor=$this->conexao->prepare($sql);
     }else{
-        $sql="SELECT * FROM vproduto where nome = ? or codigo_barra = ? ";
+        $sql="SELECT * FROM vproduto where nome like ? or codigo_barra like ? ";
         $valor=$this->conexao->prepare($sql);
-        $valor->bindValue(1,$nome);
-        $valor->bindValue(2,$nome);
+        $pesquisar = "%$nome%"; 
+        $valor->bindValue(1,$pesquisar);
+        $valor->bindValue(2,$pesquisar);
     }
     $valor->execute();
     return $valor->fetchAll(PDO::FETCH_CLASS);

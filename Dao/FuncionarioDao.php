@@ -44,10 +44,11 @@ class FuncionarioDao{
         $sql="SELECT * FROM funcionario order by idf desc";
         $valor=$this->conexao->prepare($sql);
     }else{
-        $sql="SELECT * FROM funcionario where nome = ? or cargo = ? ";
+        $sql="SELECT * FROM funcionario where nome like ? or cargo like ? ";
         $valor=$this->conexao->prepare($sql);
-        $valor->bindValue(1,$nome);
-        $valor->bindValue(2,$nome);
+        $pesquisar = "%$nome%"; 
+        $valor->bindValue(1,$pesquisar);
+        $valor->bindValue(2,$pesquisar);
     }
     $valor->execute();
     return $valor->fetchAll(PDO::FETCH_CLASS);
