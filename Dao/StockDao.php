@@ -61,7 +61,14 @@ class StockDao{
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);
     }
-    public function selectStock($nome){
+    public function selectStock(){
+            $sql="SELECT idstock,idp,idf,nome,descricao,nomec,valor_compra,codigo_barra,caducidade,qtd,dataentrada,
+            preco_venda,lucro,nomef FROM vstock ";
+            $valor=$this->conexao->prepare($sql);
+            $valor->execute();
+            return $valor->fetchAll(PDO::FETCH_CLASS);
+    }
+    public function sele($nome){
         $valor=null;
         if($nome == ""){
             $sql="SELECT idstock,idp,idf,nome,descricao,nomec,valor_compra,codigo_barra,caducidade,qtd,dataentrada,

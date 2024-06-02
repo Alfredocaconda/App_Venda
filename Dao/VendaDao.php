@@ -12,23 +12,22 @@ class VendaDao{
         include "Dao/StockDao.php";
         $stock=new StockDao;
         $var=$model->nome;
-        foreach ($stock->selectStock($var) as $produto) {
+        $quant=$model->quantidade;
+        foreach ($stock->selectStock() as $produto) {
             # code...
-            $total=$model->quantidade * $produto->preco_venda;
+            $total=$quant * $produto->preco_venda;
             $data=date("Y-m-d H:i:s");
             $sql="INSERT INTO carrinho(idproduto,quantidade, preco, codigo_barra, dataCarrinho, idstock)
             value (?,?,?,?,?,?)";
             $valor=$this->conexao->prepare($sql);
-            $valor->bindValue(1,$model->idproduto);
-            $valor->bindValue(2,$model->quantidade);
-            $valor->bindValue(3,$total);
-            $valor->bindValue(4,$produto->codigo_barra);
-            $valor->bindValue(5,$data);
             $valor->bindValue(6,$produto->idstock);
-            $valor->execute();
         }
-        
-   
+        $valor->bindValue(1,$model->idproduto);
+        $valor->bindValue(2,$quant);
+        $valor->bindValue(3,$total);
+        $valor->bindValue(4,$model->codigo_barra);
+        $valor->bindValue(5,$data);
+        $valor->execute();
     }
     #funcao para reduzir a quantidade de produto no stock
 
@@ -42,8 +41,8 @@ class VendaDao{
     }
     #funcao para listar todos os produtos que estão no carrinho de compra
     public function selectCarrinho(){
-        $sql = "SELECT idstock,id_carrinho,idp,nome,descricao,qtd,SUM(vcarrinho.quantidade),SUM(vcarrinho.codigo_barra) as quantidade
-        ,SUM(vcarrinho.preco) as preco,codigo_barra,nomec FROM vcarrinho GROUP BY (codigo_barra) order by id_carrinho desc";
+        $sql = "SELECT idstock,id_carrinho,idp,nome,descricao,qtd,SUM(vcarrinho.quantidade) as quantidade,SUM(vcarrinho.preco)
+         as preco,codigo_barra,nomec FROM vcarrinho GROUP BY (codigo_barra) order by id_carrinho desc";
         $valor=$this->conexao->prepare($sql);
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);
@@ -52,11 +51,11 @@ class VendaDao{
     public function selectVendas($nome){
         $valor=null;
         if($nome == ""){
-            $sql = "SELECT idv, nome, qtdrequerida, totalCompra, datavenda, fatura, nomef FROM vvenda
+            $sql = "SELECT idv, nome,descricao,nomec, qtdrequerida, totalCompra, datavenda, fatura, nomef FROM vvenda
             order by idv desc ";
             $valor=$this->conexao->prepare($sql);
         }else{
-            $sql = "SELECT idv, qtdrequerida, totalCompra, datavenda, fatura, nomef, nome 
+            $sql = "SELECT idv, qtdrequerida,descricao,nomec, totalCompra, datavenda, fatura, nomef, nome 
             FROM vvenda  where nome like ? or nomef like ? or fatura like ? order by idv desc ";
             $valor=$this->conexao->prepare($sql);
             $pesquisar = "%$nome%"; 

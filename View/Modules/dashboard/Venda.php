@@ -204,6 +204,7 @@
     <table class="table table-hover">
         <tr>
             <th scope="col">NOME</th>
+            <th scope="col">codigo de barra</th>
             <th scope="col">QUANTIDADE</th>
             <th scope="col">SUBTOTAL</th>
         </tr>
@@ -218,6 +219,7 @@
             <input type="hidden" name="preco" value="<?=$itens->preco?>">
             <input type="hidden" name="codigo_barra" value="<?=$itens->codigo_barra?>">
             <td  width='100px'; scope="col"><?=$itens->nome?> </td>
+            <td  width='100px'; scope="col"><?=$itens->codigo_barra?> </td>
             <td  width='100px'; scope="col"><?=$itens->quantidade?> </td>
             <td  width='100px'; scope="col"><?=number_format($itens->preco)."KZ"?> </td>
             <td  scope="col"> <a href="/Venda/removerID?codigo_barra=<?=$itens->codigo_barra?>" class="btn btn-danger">REMOVER</a> </td>
@@ -231,7 +233,7 @@
         </div>
         <div class="input">
         <input type="text" name="cliente" class="" placeholder="NOME DO CLIENTE">
-         <input type="text" name="valor" class="" placeholder="VALOR A PAGAR">
+         <input type="number" name="valor" class="" placeholder="VALOR A PAGAR">
       </div>
       <br>
             <td scope="col"><button class="btn btn-success" onclick="openNewTab()">VENDER</button></td>

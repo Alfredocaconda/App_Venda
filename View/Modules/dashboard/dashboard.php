@@ -22,7 +22,7 @@
     <table class="table table-hover">
         <tr>
             <th  scope="col">CODIGO</th>
-            <th  scope="col">NOME</th>
+            <th  scope="col">NOME/DESCRIÇÃO/CATEGORIA</th>
             <th  scope="col">QTD VENDIDO</th>
             <th  scope="col">VALOR TOTAL</th>
             <th  scope="col">DATA</th>
@@ -32,7 +32,7 @@
         <?php foreach ($modelagem->listarVendas as $item): ?>
          <tr>
             <td scope="col" ><?=$item->idv?> </td>
-            <td scope="col" ><?=$item->nome?> </td>
+            <td scope="col" ><?=$item->nome."/".$item->descricao."/".$item->nomec?> </td>
             <td scope="col" ><?=$item->qtdrequerida?> </td>
             <td scope="col" ><?=number_format($item->totalCompra)."KZ"?> </td>
             <td scope="col" ><?=$item->datavenda?> </td>
