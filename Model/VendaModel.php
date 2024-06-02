@@ -29,11 +29,23 @@ class VendaModel{
        $this->listarVendas= $dados->selectVendas($nome);
 
     }
-   
-    public function Cancelar(){
+    public function relatorioDiario($nome){
         include 'Dao/VendaDao.php';
         $dados=new VendaDao();
-        $dados->Cancelar();
+       $this->listarVendas= $dados->selectDiario($nome);
+
+    }
+    public function relatorioPersonalizado($nome){
+        include 'Dao/VendaDao.php';
+        $dados=new VendaDao();
+       $this->listarVendas= $dados->selectVendas($nome);
+
+    }
+   
+    public function Apagar(){
+        include 'Dao/VendaDao.php';
+        $dados=new VendaDao();
+        $dados->Apagar();
     } 
     public function removerId(string $codigo_barra){
        

@@ -54,6 +54,34 @@
         include 'View/Modules/Venda/listarVenda.php';
        
     }
+    public static function diario(){
+        include "Model/VendaModel.php";
+        $modelagem=new VendaModel();
+        #chamando as fucnoes das 
+            if (isset($_POST['nome'])) {
+                # code...
+                $modelagem->relatorioDiario($_POST['nome']);
+            } else {
+                $modelagem->relatorioDiario("");
+                # code...
+            }
+        
+        #incluindo o formulario para poder mostrar todos os produtos
+        Middleware::auth();
+        include 'View/Modules/Relatorio/diario.php';
+       
+    }
+    public static function personalizado(){
+        include "Model/VendaModel.php";
+        $modelagem=new VendaModel();
+        #chamando as fucnoes das 
+        $modelagem->relatorioPersonalizado($_POST['nome']);
+        #incluindo o formulario para poder mostrar todos os produtos
+        Middleware::auth();
+        include 'View/Modules/Relatorio/personalizado.php';
+       
+    }
+   
 
     public static function save(){
     include "Model/VendaModel.php";
@@ -82,17 +110,16 @@
             $model->finalizar();
             Middleware::auth();
             header("Location: /Venda");
-           # header("Location: ../View/fatura/fatura.php");
         } else {
             # code...
             echo "VALOR INSUFICIENTE";
         }
     }
    
-    public static function Cancelar(){
+    public static function Apagar(){
         include "Model/VendaModel.php";
         $model=new VendaModel();
-        $model->Cancelar();
+        $model->Apagar();
         Middleware::auth();
         header("Location: /Venda");
     }
@@ -105,3 +132,4 @@
     }
 }
 ?>
+ 

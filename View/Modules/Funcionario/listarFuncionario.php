@@ -12,12 +12,12 @@
          </div>
    <!--LINHA-->
          <nav class="navbar bg-body-tertiary">
-         <div class="container-fluid">
-            <form class="d-flex" action="/funcionario" method="POST" role="search">
-               <input class="form-control me-2" type="search" name="nome" placeholder="NOME OU FUNÇÃO" aria-label="Search" autofocus>
-                  <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-            </form>
-         </div>
+             <div class="container-fluid">
+               <form class="d-flex" action="/funcionario" method="POST" role="search">
+                  <input class="form-control me-2" type="search" name="nome" placeholder="NOME OU FUNÇÃO" aria-label="Search" autofocus>
+                     <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+               </form>
+              </div>
          </nav>
    <section class="content" style="overflow-y: auto; overflow-x: hidden; height: 65vh;">
     <table class="table table-hover">

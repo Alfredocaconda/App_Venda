@@ -179,8 +179,8 @@
                 faturaController::performa();
                 break;
 
-            case '/venda/cancelar':
-                VendaController::Cancelar();
+            case '/venda/Apagar':
+                VendaController::Apagar();
                 break;
 
             case '/Venda/removerID':
@@ -190,6 +190,14 @@
                 #================== FIM DAS ROTAS DA CATEGORIA=========== 
                 #========================================================================================================
                 
+                #==============Rota de relatorio================================
+                #=================================================================================
+                case '/relatoriodiario';
+                VendaController::diario();
+                break;
+                case '/relatorioPersonalizado';
+                VendaController::personalizado();
+                break;
                 #================== INICIO DAS ROTAS DE PAGINAS NÃO EXISTENTE=========== 
                 #========================================================================================================
                 

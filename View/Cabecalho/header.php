@@ -93,8 +93,8 @@
                         <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                            <i class="fa fa-clone yellow_color"></i> <span>Relatório</span></a>
                         <ul class="collapse list-unstyled" id="additional_page">
-                           <li><a href="#">> <span>Diario</span></a></li>
-                           <li><a href="#">> <span>Personalizado</span></a></li>
+                           <li><a href="/relatoriodiario">> <span>Diario</span></a></li>
+                           <li><a href="/relatorioPersonalizado">> <span>Personalizado</span></a></li>
                         </ul>
                      </li>
                      </li>

@@ -177,6 +177,7 @@
         <?php foreach ($model->linhas as $item): ?>
         <tr>
         <form action="/Venda/save" method="post">
+            <input type="hidden" name="id_carrinho" value="<?=$item->id_carrinho?>">
             <input type="hidden" name="idp" value="<?=$item->idp?>">
             <input type="hidden" name="idstock" value="<?=$item->idstock?>">
             <input type="hidden" name="preco_venda" value="<?=$item->preco_venda?>">
@@ -206,11 +207,12 @@
             <th scope="col">QUANTIDADE</th>
             <th scope="col">SUBTOTAL</th>
         </tr>
-        <form class="formulario2" action="/Venda/final" method="post">
+        <form class="formulario2" action="/Venda/final" onsubmit="abrirNovaJanela(event)" method="post">
         <tr>
          <?php $soma = 0;
          $troco=0;?>
         <?php foreach ($model2->linha as $itens): ?>
+            <input type="hidden" name="idf" value="<?=$_SESSION['idf']?>">
             <input type="hidden" name="id_carrinho" value="<?=$itens->id_carrinho?>">
             <input type="hidden" name="quantidade" value="<?=$itens->quantidade?>">
             <input type="hidden" name="preco" value="<?=$itens->preco?>">
@@ -232,15 +234,15 @@
          <input type="text" name="valor" class="" placeholder="VALOR A PAGAR">
       </div>
       <br>
-            <td scope="col"><button class="btn btn-success">VENDER</button></td>
+            <td scope="col"><button class="btn btn-success" onclick="openNewTab()">VENDER</button></td>
             <td scope="col"><a href="/fatura/performa"target="_blank" class="btn btn-primary">PERFORMA</a></td>
-            <td scope="col"><a href="/venda/cancelar" class="btn btn-primary">NOVA VENDA</a></td>
+            <td scope="col"><a href="/venda/Apagar" class="btn btn-primary">NOVA VENDA</a></td>
             </form>
     </table>
     </div>
     </nav>
     </div>
-</body>
+   </body>
   <!-- jQuery -->
   <script src="../../../js/jquery.min.js"></script>
       <script src="../../../js/popper.min.js"></script>

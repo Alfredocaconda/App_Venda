@@ -106,11 +106,15 @@
             width: 50%;
             display:flex;
             height: 30px;
-            margin-left: 62%;
+            margin-left: 50%;
             margin-top: 50px;
+            input{
+               width: 500%;
+            }
          }
          .baixar{
             margin-top: 20px;
+            height: 100vh;
          }
          .nome{
             display:flex;
@@ -140,8 +144,12 @@
                   <img src="../../../logotipo/logotipo.png" alt="">
                   </div>
                   <div class="nome">
-                     <p class="cor_nome"><?php echo $_SESSION['nome'] ?></p>
-                     <a href="/logout"  id="sair">SAIR</a>
+                     <div>
+                  <p class="cor_nome"><?php echo $_SESSION['nome'] ?></p>
+                       </div>   
+                     <div>
+                     <a href="/" class="btn btn-danger">SAIR</a>
+                       </div>   
                   </div>
                </div>
             </div>
@@ -151,7 +159,7 @@
       <div class="pesquisa">
          <table class="table">
          <form action="/Venda" method="post">
-            <input type="text" name="nome" placeholder="PESQUISAR">
+            <input type="text" name="nome" placeholder="NOME / CODIGO DE BARRA">
             <button type="submite" class="btn btn-primary">PESQUISAR</button>
           </form>
          </table>
@@ -162,6 +170,7 @@
         <tr>
             <th scope="col">NOME</th>
             <th scope="col">DESCRICAO</th>
+            <th scope="col">CODIGO</th>
             <th scope="col">PREÇO</th>
             <th scope="col">QTD</th>
         </tr>
@@ -173,11 +182,12 @@
             <input type="hidden" name="preco_venda" value="<?=$item->preco_venda?>">
             <input type="hidden" name="codigo_barra" value="<?=$item->codigo_barra?>">
             <input type="hidden" name="nomes" value="<?=$item->nome?>">
-            <td scope="col"><?=$item->nome?> </td>
-            <td scope="col"><?=$item->descricao?> </td>
-            <td scope="col"><?=number_format($item->preco_venda)."KZ"?> </td>
-            <td scope="col"><?=$item->qtd?> </td>
-            <td scope="col"style="width: 150px;"><input type="text" name="quantidade"
+            <td scope="col" style="width: 150px;"><?=$item->nome?> </td>
+            <td scope="col" style="width: 150px;"><?=$item->descricao?> </td>
+            <td scope="col" style="width: 100px;"><?=$item->codigo_barra?> </td>
+            <td scope="col"style="width: 150px;"><?=number_format($item->preco_venda)."KZ"?> </td>
+            <td scope="col" style="width: 100px;"><?=$item->qtd?> </td>
+            <td scope="col" style="width: 150px;"><input type="text" name="quantidade"
             placeholder="QUANTIDADE"  ></td>
             <td scope="col" ><button class="btn btn-primary">VENDER</button></td>
             </form>
@@ -196,7 +206,7 @@
             <th scope="col">QUANTIDADE</th>
             <th scope="col">SUBTOTAL</th>
         </tr>
-        <form class="formulario2" action="/Venda/final" method="post">
+        <form class="formulario2" action="/Venda/final" onsubmit="abrirNovaJanela(event)" method="post">
         <tr>
          <?php $soma = 0;
          $troco=0;?>
@@ -208,7 +218,7 @@
             <td  width='100px'; scope="col"><?=$itens->nome?> </td>
             <td  width='100px'; scope="col"><?=$itens->quantidade?> </td>
             <td  width='100px'; scope="col"><?=number_format($itens->preco)."KZ"?> </td>
-            <td  scope="col"> <a href="/Venda/removerID?id_carrinho=<?=$itens->id_carrinho?>" class="btn btn-danger">REMOVER</a> </td>
+            <td  scope="col"> <a href="/Venda/removerID?codigo_barra=<?=$itens->codigo_barra?>" class="btn btn-danger">REMOVER</a> </td>
             <?php $soma += $itens->preco?>
          </tr>
         <?php endforeach ?>
@@ -222,15 +232,15 @@
          <input type="text" name="valor" class="" placeholder="VALOR A PAGAR">
       </div>
       <br>
-            <td scope="col"><button class="btn btn-success">VENDER</button></td>
+            <td scope="col"><button class="btn btn-success" onclick="openNewTab()">VENDER</button></td>
             <td scope="col"><a href="/fatura/performa"target="_blank" class="btn btn-primary">PERFORMA</a></td>
-            <td scope="col"><a href="/venda/cancelar" class="btn btn-primary">NOVA VENDA</a></td>
+            <td scope="col"><a href="/venda/Apagar" class="btn btn-primary">NOVA VENDA</a></td>
             </form>
     </table>
     </div>
     </nav>
     </div>
-</body>
+   </body>
   <!-- jQuery -->
   <script src="../../../js/jquery.min.js"></script>
       <script src="../../../js/popper.min.js"></script>
