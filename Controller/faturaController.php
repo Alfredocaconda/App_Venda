@@ -10,8 +10,11 @@ class faturaController{
         $this->auth();
     }
     public static function index(){
-        include "Model/faturaModel.php";
-        $model2=new faturaModel();
+        include "Model/VendaModel.php";
+        #chamando as classes
+        $model2=new VendaModel();
+        #chamando as fucnoes das 
+        $model2->listarcarrinho();
         Middleware::auth();
         include 'View/fatura/fatura.php';
     }

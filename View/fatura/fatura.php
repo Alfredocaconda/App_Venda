@@ -59,6 +59,8 @@
                 <thead>
                 <tr>
                 <th scope="col">NOME</th>
+                    <th scope="col">DESCRIÇÃO</th>
+                    <th scope="col">PREÇO</th>
                     <th scope="col">QUANTIDADE</th>
                     <th scope="col">SUBTOTAL</th>
                 </tr>
@@ -68,7 +70,9 @@
                 <?php foreach ($model2->linha as $itens): ?>
                 <tr>
                     <td scope="col"><?=$itens->nome?> </td>
-                    <td scope="col"><?=$itens->quantidade?> </td>
+                    <td scope="col"><?=$itens->descricao?> </td>
+                    <td scope="col"><?=$itens->preco?></td>
+                    <td scope="col"><?=$itens->quantidade?></td>
                     <td scope="col"><?=number_format($itens->preco)."KZ"?> </td>
                     <?php $soma += $itens->preco?>
                 </tr>
@@ -77,9 +81,11 @@
                 </tbody>
                 </table>
                 <div class="total">
+                    <?php $valor=$_GET['somatorio'];
+                    $troco=$valor-$soma; ?>
                     <h4 ><p><b>Total: <?php echo number_format($soma)."KZ"?></b></p></h4>
-                    <h4 ><p><b>VAlor pago: <?php echo number_format($soma)."KZ"?></b></p></h4>
-                    <h4 ><p><b>Troco: <?php echo number_format($soma)."KZ"?></b></p></h4>
+                    <h4 ><p><b>Valor pago: <?php  echo number_format($valor)."KZ"?></b></p></h4>
+                    <h4 ><p><b>Troco: <?php echo number_format($troco)."KZ"?></b></p></h4>
                 </div>
                  <p>funcionario: <?= $_SESSION['nome'] ?></p>
                

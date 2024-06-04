@@ -204,7 +204,6 @@
     <table class="table table-hover">
         <tr>
             <th scope="col">NOME</th>
-            <th scope="col">codigo de barra</th>
             <th scope="col">QUANTIDADE</th>
             <th scope="col">SUBTOTAL</th>
         </tr>
@@ -219,7 +218,6 @@
             <input type="hidden" name="preco" value="<?=$itens->preco?>">
             <input type="hidden" name="codigo_barra" value="<?=$itens->codigo_barra?>">
             <td  width='100px'; scope="col"><?=$itens->nome?> </td>
-            <td  width='100px'; scope="col"><?=$itens->codigo_barra?> </td>
             <td  width='100px'; scope="col"><?=$itens->quantidade?> </td>
             <td  width='100px'; scope="col"><?=number_format($itens->preco)."KZ"?> </td>
             <td  scope="col"> <a href="/Venda/removerID?codigo_barra=<?=$itens->codigo_barra?>" class="btn btn-danger">REMOVER</a> </td>
@@ -227,16 +225,17 @@
          </tr>
         <?php endforeach ?>
         <div class="valores">
-           <input type="hidden" name="soma" value="<?php echo $soma ?>">
+           <input type="hidden" name="soma" id="total" value="<?php echo $soma ?>">
         <p class="total"><b>Total: <?php echo number_format($soma)."KZ"?></b></p> 
-        <p class="total"><b>Troco: <?php echo number_format($troco)."KZ"?></b></p>
+        <p class="total troco"><b>Troco: </b></p>
         </div>
         <div class="input">
         <input type="text" name="cliente" class="" placeholder="NOME DO CLIENTE">
-         <input type="number" name="valor" class="" placeholder="VALOR A PAGAR">
+         <input type="number" name="valor" class="valor" placeholder="VALOR A PAGAR">
       </div>
       <br>
-            <td scope="col"><button class="btn btn-success" onclick="openNewTab()">VENDER</button></td>
+            <td scope="col">
+               <a href="" target="_blank" style="display: none;" class="btn btn-success" id="btnVender" >VENDER</a></td>
             <td scope="col"><a href="/fatura/performa"target="_blank" class="btn btn-primary">PERFORMA</a></td>
             <td scope="col"><a href="/venda/Apagar" class="btn btn-primary">NOVA VENDA</a></td>
             </form>
@@ -268,4 +267,23 @@
       <!-- custom js -->
       <script src="../../../js/chart_custom_style1.js"></script>
       <script src="../../../js/custom.js"></script>
+      <script>
+         $(function(){
+            $(".valor").change(function(){
+               var valor_recebido=$(".valor").val()
+               var total=$("#total").val()
+               console.log(valor_recebido)
+               console.log(total)
+               if (valor_recebido>=total) {
+                     $("#btnVender").css('display','flex')
+                     $("#btnVender").prop('href',"/fatura/vendido?somatorio="+valor_recebido)
+                    
+                     trocando=valor_recebido-total
+                     $(".troco b").text("Troco:"+trocando)
+                  }else{
+                     $("#btnVender").css('display','none')
+                  }
+            })
+         });
+      </script>
 </html>

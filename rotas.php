@@ -171,8 +171,9 @@
                 VendaController::finalizar();
                 break;
 
-            case '/fatura':
+            case '/fatura/vendido':
                 faturaController::index();
+                VendaController::finalizar();
                 break;
 
             case '/fatura/performa':

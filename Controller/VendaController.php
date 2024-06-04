@@ -101,19 +101,9 @@
     public static function finalizar(){
         include "Model/VendaModel.php";
         $model=new VendaModel();
-        $model->valorpago=$_POST['valor'];
-        $model->soma=$_POST['soma'];
-        $model->idf=$_POST['idf'];
-
-        if ($_POST['valor']>=$_POST['soma']) {
-            # code...
-            $model->finalizar();
-            Middleware::auth();
-            header("Location: /Venda");
-        } else {
-            # code...
-            echo "VALOR INSUFICIENTE";
-        }
+        $model->finalizar();
+        Middleware::auth();
+        
     }
    
     public static function Apagar(){
