@@ -3,7 +3,7 @@
 class VendaModel{
     public $id_carrinho,$nome,$descricao,$idstock,$idproduto,
     $quantidade,$preco,$codigo_barra,$dataVenda,$dataCarrinho,$idv,$qtdrequerida,$totalCompra,
-    $datavenda,$fatura,$idf,$valorpago,$soma,$idp,$pesq;
+    $datavenda,$fatura,$idf,$valorpago,$soma,$idp,$pesq,$preco_venda;
     public $linhas,$linha,$listarVendas;
     public function save(){
         include 'Dao/VendaDao.php';

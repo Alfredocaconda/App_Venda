@@ -11,11 +11,8 @@ class VendaDao{
     public function insert(VendaModel $model){
         include "Dao/StockDao.php";
         $stock=new StockDao;
-        $var=$model->nome;
-        $quant=$model->quantidade;
         foreach ($stock->selectStock() as $produto) {
             # code...
-            $total=$quant * $produto->preco_venda;
             $data=date("Y-m-d H:i:s");
             $sql="INSERT INTO carrinho(idproduto,quantidade, preco, codigo_barra, dataCarrinho, idstock)
             value (?,?,?,?,?,?)";
@@ -23,8 +20,8 @@ class VendaDao{
             $valor->bindValue(6,$produto->idstock);
         }
         $valor->bindValue(1,$model->idproduto);
-        $valor->bindValue(2,$quant);
-        $valor->bindValue(3,$total);
+        $valor->bindValue(2,$model->quantidade);
+        $valor->bindValue(3,$model->quantidade*$model->preco_venda);
         $valor->bindValue(4,$model->codigo_barra);
         $valor->bindValue(5,$data);
         $valor->execute();
@@ -41,7 +38,7 @@ class VendaDao{
     }
     #funcao para listar todos os produtos que estão no carrinho de compra
     public function selectCarrinho(){
-        $sql = "SELECT idstock,id_carrinho,idp,nome,descricao,qtd,SUM(vcarrinho.quantidade) as quantidade,SUM(vcarrinho.preco)
+        $sql = "SELECT idstock,id_carrinho,idp,preco_venda,nome,descricao,qtd,SUM(vcarrinho.quantidade) as quantidade,SUM(vcarrinho.preco)
          as preco,codigo_barra,nomec FROM vcarrinho GROUP BY (codigo_barra) order by id_carrinho desc";
         $valor=$this->conexao->prepare($sql);
         $valor->execute();

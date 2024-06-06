@@ -91,6 +91,7 @@
     $model->idproduto=$_POST['idp'];
     $model->nome=$_POST['nomes'];
     $model->quantidade=$_POST['quantidade'];
+    $model->preco_venda=$_POST['preco_venda'];
     $data=date("Y-m-d-H:i:s");
     $model->codigo_barra=$_POST['codigo_barra'];
     $model->dataCarrinho=$data;
