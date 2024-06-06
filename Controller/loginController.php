@@ -4,9 +4,7 @@ class LoginController {
     public static function index(){
         include "View/Modules/login/login.php";
     }
-    public static function login(){
-
-    }
+  
     public static function autenticar(){
         include "Model/loginModel.php";
         $model= new LoginModel();
