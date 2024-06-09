@@ -25,6 +25,8 @@
 
         #CONTROLLER DA FATURA
         include "Controller/faturaController.php";
+        #Controller da impressao
+        include "Controller/ImpressaoController.php";
 
         #==============================================================================================
         #====================== FIM DO CONTROLLER =====================================================
@@ -174,6 +176,10 @@
             case '/fatura/vendido':
                 faturaController::index();
                 VendaController::finalizar();
+                break;
+
+            case '/impressao/fatura':
+                imprimirController::fatura();
                 break;
 
             case '/fatura/performa':
