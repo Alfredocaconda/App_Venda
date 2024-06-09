@@ -4,23 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Ponto De Venda</title>
-   <!-- site icon -->
-      <link rel="icon" href="../../../fevicon.png" type="image/png" />
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="../../../css/bootstrap.min.css" />
-      <!-- site css -->
-      <link rel="stylesheet" href="../../../style.css" />
-      <!-- responsive css -->
-      <link rel="stylesheet" href="../../../css/responsive.css" />
-      <!-- color css -->
-      <link rel="stylesheet" href="../../../css/colors.css" />
-      <!-- select bootstrap -->
-      <link rel="stylesheet" href="../../../css/bootstrap-select.css" />
-      <!-- scrollbar css -->
-      <link rel="stylesheet" href="../../../css/perfect-scrollbar.css" />
-      <!-- custom css -->
-      <link rel="stylesheet" href="../../../css/custom.css" />
-   
+   <?php include "./View/Cabecalho/link.php" ?>
       <style>
          .tabela{
             width: 50%;
@@ -241,28 +225,7 @@
     </div>
    </body>
   <!-- jQuery -->
-  <script src="../../../js/jquery.min.js"></script>
-      <script src="../../../js/popper.min.js"></script>
-      <script src="../../../js/bootstrap.min.js"></script>
-      <!-- wow animation -->
-      <script src="../../../js/animate.js"></script>
-      <!-- select country -->
-      <script src="../../../js/bootstrap-select.js"></script>
-      <!-- owl carousel -->
-      <script src="../../../js/owl.carousel.js"></script> 
-      <!-- chart js -->
-      <script src="../../../js/Chart.min.js"></script>
-      <script src="../../../js/Chart.bundle.min.js"></script>
-      <script src="../../../js/utils.js"></script>
-      <script src="../../../js/analyser.js"></script>
-      <!-- nice scrollbar -->
-      <script src="../../../js/perfect-scrollbar.min.js"></script>
-      <script>
-         var ps = new PerfectScrollbar('#sidebar');
-      </script>
-      <!-- custom js -->
-      <script src="../../../js/chart_custom_style1.js"></script>
-      <script src="../../../js/custom.js"></script>
+  <?php include "./View/Cabecalho/script.php" ?>
       <script>
          $(function(){
             $(".valor").change(function(){

@@ -28,6 +28,8 @@
         #Controller da impressao
         include "Controller/ImpressaoController.php";
 
+        include "Controller/fechoDiario.php";
+
         #==============================================================================================
         #====================== FIM DO CONTROLLER =====================================================
         #direcionando a url para as paginas
@@ -173,17 +175,13 @@
                 VendaController::finalizar();
                 break;
 
-            case '/fatura/vendido':
-                faturaController::index();
+                case '/impressao/fatura':
+                imprimirController::fatura();
                 VendaController::finalizar();
                 break;
 
-            case '/impressao/fatura':
-                imprimirController::fatura();
-                break;
-
             case '/fatura/performa':
-                faturaController::performa();
+                imprimirController::performa();
                 break;
 
             case '/venda/Apagar':
@@ -201,6 +199,9 @@
                 #=================================================================================
                 case '/relatoriodiario';
                 VendaController::diario();
+                break;
+                case '/relatoriodiario/imprimir';
+                fechoDiario::diario();
                 break;
                 case '/relatorioPersonalizado';
                 VendaController::personalizado();

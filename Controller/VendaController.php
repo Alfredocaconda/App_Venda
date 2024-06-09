@@ -58,9 +58,9 @@
         include "Model/VendaModel.php";
         $modelagem=new VendaModel();
         #chamando as fucnoes das 
-            if (isset($_POST['nome'])) {
+            if (isset($_POST['data'])) {
                 # code...
-                $modelagem->relatorioDiario($_POST['nome']);
+                $modelagem->relatorioDiario($_POST['data']);
             } else {
                 $modelagem->relatorioDiario("");
                 # code...

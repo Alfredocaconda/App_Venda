@@ -13,22 +13,7 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
-      <!-- site icon -->
-      <link rel="icon" href="../../../fevicon.png" type="image/png" />
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="../../../css/bootstrap.min.css" />
-      <!-- site css -->
-      <link rel="stylesheet" href="../../../style.css" />
-      <!-- responsive css -->
-      <link rel="stylesheet" href="../../../css/responsive.css" />
-      <!-- color css -->
-      <link rel="stylesheet" href="../../../css/colors.css" />
-      <!-- select bootstrap -->
-      <link rel="stylesheet" href="../../../css/bootstrap-select.css" />
-      <!-- scrollbar css -->
-      <link rel="stylesheet" href="../../../css/perfect-scrollbar.css" />
-      <!-- custom css -->
-      <link rel="stylesheet" href="../../../css/custom.css" />
+      <?php include "link.php" ?>
    </head>
    <body class="dashboard dashboard_1">
       <div class="full_container">

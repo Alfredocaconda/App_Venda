@@ -15,8 +15,10 @@
                      <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                <form class="d-flex" action="/relatoriodiario" method="POST" role="search">
-                  <input class="form-control me-2" type="date" name="nome" aria-label="Search" autofocus>
+                  <input class="form-control me-2" id="valor" type="date" name="data" aria-label="Search" autofocus>
                      <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                     <th style="margin-left: 20px;" ><a href="/relatoriodiario/imprimir"target="_blank"
+                      class="btn btn-primary"  >IMPRIMIR</a></th>
                </form>
             </div>
             </nav>
@@ -50,6 +52,19 @@
 
                      </div>
                   <!-- footer -->
+                  <script>
+         $(function(){
+            $(".valor").change(function(){
+               var data=$("#valor").val()
+               if (data>0) {
+                     $("#btnVender").css('display','flex')
+                     $("#btnVender").prop('href',"/relatoriodiario/imprimir?data="+data)
+                  }else{
+                     $("#btnVender").css('display','none')
+                  }
+            })
+         });
+      </script>
                   <?php
 require_once "./View/Cabecalho/rodape.php";
 ?>

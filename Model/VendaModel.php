@@ -29,10 +29,10 @@ class VendaModel{
        $this->listarVendas= $dados->selectVendas($nome);
 
     }
-    public function relatorioDiario($nome){
+    public function relatorioDiario($data){
         include 'Dao/VendaDao.php';
         $dados=new VendaDao();
-       $this->listarVendas= $dados->selectDiario($nome);
+       $this->listarVendas= $dados->selectDiario($data);
 
     }
     public function relatorioPersonalizado($nome){

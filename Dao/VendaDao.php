@@ -6,7 +6,12 @@ class VendaDao{
     public function __construct(){
         $dados="mysql:host=localhost:3306;dbname=venda";
         $this->conexao=new PDO($dados,'root','');
+
     }
+    public static function auth(){
+        Middleware::auth();
+    }
+    
     #funcao para inserir os produtos no carrinho de compra
     public function insert(VendaModel $model){
         include "Dao/StockDao.php";
@@ -64,17 +69,19 @@ class VendaDao{
         return $valor->fetchAll(PDO::FETCH_CLASS);
     }
     #funcao para listar todos os produtos que estão no carrinho de compra
-    public function selectDiario($nome){
+    public function selectDiario($data){
             $sql = "SELECT idv, qtdrequerida, totalCompra, datavenda, fatura, nomef, nome ,
             SUM(vvenda.qtdrequerida) as qtdrequerida
         ,SUM(vvenda.totalCompra) as totalCompra FROM vvenda  where datavenda=? GROUP BY (nome)";
             $valor=$this->conexao->prepare($sql);
-            $valor->bindValue(1,$nome);
+            $valor->bindValue(1,$data);
             $valor->execute();
             return $valor->fetchAll(PDO::FETCH_CLASS);
     }
+   
         #funcao para vender os produtos 
         public function vender(VendaModel $model) {
+            $funcionario=$_SESSION['idf'];
             $carrinho= new VendaDao;
             foreach ($carrinho->selectCarrinho() as $produto) {
             # code...
@@ -87,7 +94,7 @@ class VendaDao{
             $valor->bindValue(2,$produto->preco);
             $valor->bindValue(3,$data);
             $valor->bindValue(4,$fatura);
-            $valor->bindValue(5,$model->idf);
+            $valor->bindValue(5,$funcionario);
             $valor->bindValue(6,$produto->idp);
             $valor->bindValue(7,$produto->codigo_barra);
             $valor->execute();
