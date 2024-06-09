@@ -272,7 +272,7 @@
                console.log(total)
                if (valor_recebido>=total) {
                      $("#btnVender").css('display','flex')
-                     $("#btnVender").prop('href',"/fatura/vendido?somatorio="+valor_recebido)
+                     $("#btnVender").prop('href',"../../../Dao/imprimir.php?somatorio="+valor_recebido)
                     
                      trocando=valor_recebido-total
                      $(".troco b").text("Troco:"+trocando)
