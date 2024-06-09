@@ -59,9 +59,8 @@
                 <thead>
                 <tr>
                 <th scope="col">NOME</th>
-                    <th scope="col">DESCRIÇÃO</th>
-                    <th scope="col">PREÇO</th>
-                    <th scope="col">QUANTIDADE</th>
+                    <th scope="col">PREÇO UNITÁRIO</th>
+                    <th scope="col">QTD</th>
                     <th scope="col">SUBTOTAL</th>
                 </tr>
                     
@@ -69,11 +68,10 @@
                 <tbody>
                 <?php foreach ($model2->linha as $itens): ?>
                 <tr>
-                    <td scope="col"><?=$itens->nome?> </td>
-                    <td scope="col"><?=$itens->descricao?> </td>
-                    <td scope="col"><?=$itens->preco_venda?></td>
+                    <td scope="col"><?=$itens->nome." ".$itens->descricao?> </td>
+                    <td scope="col"><?=number_format($itens->preco_venda)." KZ"?></td>
                     <td scope="col"><?=$itens->quantidade?></td>
-                    <td scope="col"><?=number_format($itens->preco)."KZ"?> </td>
+                    <td scope="col"><?=number_format($itens->preco)." KZ"?> </td>
                     <?php $soma += $itens->preco?>
                 </tr>
                 <?php endforeach ?>

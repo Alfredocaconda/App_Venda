@@ -38,7 +38,7 @@ class VendaDao{
     }
     #funcao para listar todos os produtos que estão no carrinho de compra
     public function selectCarrinho(){
-        $sql = "SELECT idstock,id_carrinho,idp,preco_venda,nome,descricao,qtd,SUM(vcarrinho.quantidade) as quantidade,SUM(vcarrinho.preco)
+        $sql = "SELECT idstock,id_carrinho,preco_venda,idp,nome,descricao,qtd,SUM(vcarrinho.quantidade) as quantidade,SUM(vcarrinho.preco)
          as preco,codigo_barra,nomec FROM vcarrinho GROUP BY (codigo_barra) order by id_carrinho desc";
         $valor=$this->conexao->prepare($sql);
         $valor->execute();

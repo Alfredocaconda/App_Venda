@@ -169,8 +169,6 @@
 <table class="table table-hover">
         <tr>
             <th scope="col">NOME</th>
-            <th scope="col">DESCRICAO</th>
-            <th scope="col">CODIGO</th>
             <th scope="col">PREÇO</th>
             <th scope="col">QTD</th>
         </tr>
@@ -183,9 +181,7 @@
             <input type="hidden" name="preco_venda" value="<?=$item->preco_venda?>">
             <input type="hidden" name="codigo_barra" value="<?=$item->codigo_barra?>">
             <input type="hidden" name="nomes" value="<?=$item->nome?>">
-            <td scope="col" style="width: 150px;"><?=$item->nome?> </td>
-            <td scope="col" style="width: 150px;"><?=$item->descricao?> </td>
-            <td scope="col" style="width: 100px;"><?=$item->codigo_barra?> </td>
+            <td scope="col" style="width: 150px;"><?=$item->nome." ".$item->descricao?> </td>
             <td scope="col"style="width: 150px;"><?=number_format($item->preco_venda)."KZ"?> </td>
             <td scope="col" style="width: 100px;"><?=$item->qtd?> </td>
             <td scope="col" style="width: 150px;"><input type="text" name="quantidade"

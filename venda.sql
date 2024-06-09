@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/05/2024 às 02:05
+-- Tempo de geração: 09/06/2024 às 03:09
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -37,6 +37,15 @@ CREATE TABLE `carrinho` (
   `idstock` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `idproduto`, `quantidade`, `preco`, `codigo_barra`, `dataCarrinho`, `idstock`) VALUES
+(15, 3, 2, 20000, '12345', '2024-06-09 03:06:55', 5),
+(16, 4, 1, 14000, '123456', '2024-06-09 03:06:59', 5),
+(17, 5, 1, 2500, '12345678', '2024-06-09 03:07:14', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -57,7 +66,16 @@ INSERT INTO `categoria` (`idcategoria`, `nome`, `idf`) VALUES
 (2, 'ELECTRONICO', 4),
 (3, 'DOMESTICO', 4),
 (4, 'FERRO', 4),
-(5, 'PLASTICO', 4);
+(5, 'PLASTICO', 4),
+(6, 'MADEIRA', 1),
+(7, 'VIDRO', 1),
+(8, 'METALICO', 1),
+(9, 'LIQUIDO', 1),
+(10, 'TECIDO', 1),
+(11, 'PAPEL', 1),
+(12, 'SOLIDO', 1),
+(13, 'OURO', 1),
+(14, 'PRATA', 1);
 
 -- --------------------------------------------------------
 
@@ -85,7 +103,8 @@ CREATE TABLE `funcionario` (
 INSERT INTO `funcionario` (`idf`, `nome`, `genero`, `bilhete`, `estado`, `cargo`, `data_nascimento`, `senha`, `telefone_email`, `endereco`) VALUES
 (1, 'PROGRAMADOR', 'MASCULINO', 'PROGRAMADOR', 'activo', 'Gestor', '2024-05-16', '01b7e5d8616764d4ad06f613995884a3ed4dd376', 'PROGRAMADOR', 'PROGRAMADOR'),
 (3, 'ALFREDO CACONDA', 'MASCULINO', '7012541221BA040', 'activo', 'Balconista', '2024-05-29', '935460590', '935460590', 'CUANZA SUL'),
-(4, 'PAULINO CACONDA', 'MASCULINO', '2541221BA040', 'activo', 'Gestor', '2024-05-29', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'alfredocaconda3@gmail.com', 'BOCOIO');
+(4, 'PAULINO CACONDA', 'MASCULINO', '2541221BA040', 'activo', 'Gestor', '2024-05-29', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'alfredocaconda3@gmail.com', 'BOCOIO'),
+(5, 'ALFREDO BINJI ARMINDO CACONDA', 'MASCULINO', '00000000000BA040', 'activo', 'Gestor', '1997-04-21', '3e893aadd021d930a8b30a4f2dd3355f345bc819', 'CACONDA', 'BOCOIO');
 
 -- --------------------------------------------------------
 
@@ -109,9 +128,11 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`idp`, `nome`, `descricao`, `idcategoria`, `valor_compra`, `codigo_barra`, `caducidade`, `idf`) VALUES
-(1, 'IPHONE', 'XR', 2, 40, '0000123', '0000-00-00', 4),
-(2, 'MALA', 'PEQUENA', 5, 35, '001', '0000-00-00', 4),
-(3, 'HP PORTATIL', 'HD-500GB RAM-16GB', 2, 50, '001', '0000-00-00', 4);
+(1, 'BRINCO', 'ARCOLA', 14, 2000, '123', '0000-00-00', 1),
+(2, 'MASCOTE', 'MASCULINO/ADULTO', 14, 6000, '1234', '0000-00-00', 1),
+(3, 'FIO', 'FINO/ADULTO', 14, 6500, '12345', '0000-00-00', 1),
+(4, 'FIO', 'GROSSO/MASCULINO', 14, 9000, '123456', '0000-00-00', 1),
+(5, 'BRINCO', 'ARGOLA/CRIANÇA', 14, 1500, '12345678', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -134,9 +155,11 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`idstock`, `qtd`, `dataentrada`, `idp`, `idf`, `preco_venda`, `lucro`) VALUES
-(1, 22, '2024-05-30 00:10:06', 1, 1, 50, 400),
-(3, 7, '2024-05-30 00:10:30', 2, 1, 75, 800),
-(7, 0, '2024-05-30 00:11:15', 3, 1, 120, 1400);
+(1, 20, '2024-06-06 21:58:05', 5, 1, 2500, 20000),
+(2, 20, '2024-06-06 21:58:26', 4, 1, 14000, 100000),
+(3, 20, '2024-06-06 21:58:52', 3, 1, 10000, 70000),
+(4, 20, '2024-06-06 21:59:23', 2, 1, 8000, 40000),
+(5, 20, '2024-06-06 21:59:56', 1, 1, 3500, 30000);
 
 -- --------------------------------------------------------
 
@@ -145,22 +168,17 @@ INSERT INTO `stock` (`idstock`, `qtd`, `dataentrada`, `idp`, `idf`, `preco_venda
 -- (Veja abaixo para a visão atual)
 --
 CREATE TABLE `vcarrinho` (
-`idstock` bigint(20)
-,`qtd` int(11)
-,`dataentrada` datetime
-,`preco_venda` double
-,`lucro` double
-,`nome` varchar(200)
+`id_carrinho` bigint(20)
+,`idstock` bigint(20)
 ,`idp` bigint(20)
+,`nome` varchar(200)
 ,`descricao` varchar(255)
-,`valor_compra` double
-,`codigo_barra` varchar(50)
-,`caducidade` date
-,`id_carrinho` bigint(20)
+,`nomec` varchar(20)
+,`qtd` int(11)
+,`preco_venda` double
 ,`quantidade` int(11)
 ,`preco` double
-,`dataCarrinho` datetime
-,`nomec` varchar(20)
+,`codigo_barra` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -185,31 +203,12 @@ CREATE TABLE `venda` (
   `idv` bigint(20) NOT NULL,
   `qtdrequerida` int(11) DEFAULT NULL,
   `totalCompra` double DEFAULT NULL,
-  `datavenda` datetime DEFAULT NULL,
+  `datavenda` date DEFAULT NULL,
   `fatura` varchar(20) DEFAULT NULL,
   `idf` bigint(20) DEFAULT NULL,
-  `idproduto` bigint(20) DEFAULT NULL
+  `idproduto` bigint(20) DEFAULT NULL,
+  `codigo_barra` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `venda`
---
-
-INSERT INTO `venda` (`idv`, `qtdrequerida`, `totalCompra`, `datavenda`, `fatura`, `idf`, `idproduto`) VALUES
-(1, 20, 2400, '2024-05-30 00:12:50', '20240530001250', 1, 3),
-(2, 2, 100, '2024-05-30 00:22:23', '20240530002223', 4, 1),
-(3, 3, 225, '2024-05-30 00:22:23', '20240530002223', 4, 2),
-(4, 1, 75, '2024-05-30 00:30:21', '20240530003021', 4, 2),
-(5, 1, 50, '2024-05-30 01:38:26', '20240530013826', 4, 1),
-(6, 1, 75, '2024-05-30 01:38:26', '20240530013826', 4, 2),
-(7, 2, 100, '2024-05-30 01:38:42', '20240530013842', 4, 1),
-(8, 2, 150, '2024-05-30 01:38:42', '20240530013842', 4, 2),
-(9, 5, 250, '2024-05-30 01:39:01', '20240530013901', 4, 1),
-(10, 2, 150, '2024-05-30 01:39:01', '20240530013901', 4, 2),
-(11, 4, 300, '2024-05-30 01:39:20', '20240530013920', 4, 2),
-(12, 4, 200, '2024-05-30 01:39:20', '20240530013920', 4, 1),
-(13, 2, 100, '2024-05-30 01:47:41', '20240530014741', 4, 1),
-(14, 2, 100, '2024-05-30 01:47:50', '20240530014750', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -258,11 +257,15 @@ CREATE TABLE `vstock` (
 -- (Veja abaixo para a visão atual)
 --
 CREATE TABLE `vvenda` (
-`idv` bigint(20)
+`idp` bigint(20)
+,`idv` bigint(20)
 ,`nome` varchar(200)
+,`descricao` varchar(255)
+,`nomec` varchar(20)
 ,`qtdrequerida` int(11)
 ,`totalCompra` double
-,`datavenda` datetime
+,`codigo_barra` varchar(50)
+,`datavenda` date
 ,`fatura` varchar(20)
 ,`nomef` varchar(100)
 );
@@ -274,7 +277,7 @@ CREATE TABLE `vvenda` (
 --
 DROP TABLE IF EXISTS `vcarrinho`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vcarrinho`  AS SELECT `s`.`idstock` AS `idstock`, `s`.`qtd` AS `qtd`, `s`.`dataentrada` AS `dataentrada`, `s`.`preco_venda` AS `preco_venda`, `s`.`lucro` AS `lucro`, `p`.`nome` AS `nome`, `p`.`idp` AS `idp`, `p`.`descricao` AS `descricao`, `p`.`valor_compra` AS `valor_compra`, `p`.`codigo_barra` AS `codigo_barra`, `p`.`caducidade` AS `caducidade`, `c`.`id_carrinho` AS `id_carrinho`, `c`.`quantidade` AS `quantidade`, `c`.`preco` AS `preco`, `c`.`dataCarrinho` AS `dataCarrinho`, `cate`.`nome` AS `nomec` FROM (((`carrinho` `c` join `produto` `p` on(`p`.`idp` = `c`.`idproduto`)) join `categoria` `cate` on(`cate`.`idcategoria` = `p`.`idcategoria`)) join `stock` `s` on(`s`.`idstock` = `c`.`idstock`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vcarrinho`  AS SELECT `c`.`id_carrinho` AS `id_carrinho`, `s`.`idstock` AS `idstock`, `p`.`idp` AS `idp`, `p`.`nome` AS `nome`, `p`.`descricao` AS `descricao`, `d`.`nome` AS `nomec`, `s`.`qtd` AS `qtd`, `s`.`preco_venda` AS `preco_venda`, `c`.`quantidade` AS `quantidade`, `c`.`preco` AS `preco`, `p`.`codigo_barra` AS `codigo_barra` FROM (((`carrinho` `c` join `produto` `p` on(`p`.`idp` = `c`.`idproduto`)) join `stock` `s` on(`s`.`idp` = `p`.`idp`)) join `categoria` `d` on(`d`.`idcategoria` = `p`.`idcategoria`)) ;
 
 -- --------------------------------------------------------
 
@@ -310,7 +313,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vvenda`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vvenda`  AS SELECT `v`.`idv` AS `idv`, `p`.`nome` AS `nome`, `v`.`qtdrequerida` AS `qtdrequerida`, `v`.`totalCompra` AS `totalCompra`, `v`.`datavenda` AS `datavenda`, `v`.`fatura` AS `fatura`, `f`.`nome` AS `nomef` FROM ((`venda` `v` join `funcionario` `f` on(`f`.`idf` = `v`.`idf`)) join `produto` `p` on(`p`.`idp` = `v`.`idproduto`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vvenda`  AS SELECT `p`.`idp` AS `idp`, `v`.`idv` AS `idv`, `p`.`nome` AS `nome`, `p`.`descricao` AS `descricao`, `c`.`nome` AS `nomec`, `v`.`qtdrequerida` AS `qtdrequerida`, `v`.`totalCompra` AS `totalCompra`, `p`.`codigo_barra` AS `codigo_barra`, `v`.`datavenda` AS `datavenda`, `v`.`fatura` AS `fatura`, `f`.`nome` AS `nomef` FROM (((`venda` `v` join `funcionario` `f` on(`f`.`idf` = `v`.`idf`)) join `produto` `p` on(`p`.`idp` = `v`.`idproduto`)) join `categoria` `c` on(`c`.`idcategoria` = `p`.`idcategoria`)) ;
 
 --
 -- Índices para tabelas despejadas
@@ -370,37 +373,37 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id_carrinho` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_carrinho` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `idf` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idf` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `idp` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idp` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `idstock` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idstock` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `idv` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idv` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
