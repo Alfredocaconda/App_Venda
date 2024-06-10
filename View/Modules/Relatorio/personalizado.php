@@ -27,10 +27,10 @@
                      </div>
                      <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
-               <form class="d-flex" action="/produto" method="POST" role="search">
-                  <input class="form-control me-2" type="text" name="nome" aria-label="Search"
-                  placeholder="PRODUTO/FUNCIONÁRIO" autofocus>
+               <form class="d-flex" action="/relatorioPersonalizado" method="POST" role="search">
+               <input type="text" name="valor" class="valor"  placeholder="PRODUTO/FUNCIONÁRIO" autofocus>
                      <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                     <a href="" target="_blank" style="display: none;" class="btn btn-primary" id="btnVender" >IMPRIMIR</a>
                </form>
             </div>
             </nav>
@@ -63,6 +63,23 @@
 
                      </div>
                   <!-- footer -->
+                  <?php include "./View/Cabecalho/script.php" ?>
+      <script>
+         $(function(){
+            $(".valor").change(function(){
+               var valor_recebido=$(".valor").val()
+               if (valor_recebido!="") {
+                     $("#btnVender").css('display','flex')
+                     $("#btnVender").prop('href',"/relatorioPersonalizadoimpressao?nome="+valor_recebido)
+                    
+                     trocando=valor_recebido-total
+                     $(".troco b").text("Troco:"+trocando)
+                  }else{
+                     $("#btnVender").css('display','none')
+                  }
+            })
+         });
+      </script>
                   <?php
 require_once "./View/Cabecalho/rodape.php";
 ?>

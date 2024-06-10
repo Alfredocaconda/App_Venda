@@ -215,7 +215,8 @@
       </div>
       <br>
             <td scope="col">
-               <a href="" target="_blank" style="display: none;" class="btn btn-success" id="btnVender" >VENDER</a></td>
+            <a href="" target="_blank" style="display: none;" class="btn btn-success" id="btnVender" >VENDER</a>
+         </td>
             <td scope="col"><a href="/fatura/performa"target="_blank" class="btn btn-primary">PERFORMA</a></td>
             <td scope="col"><a href="/venda/Apagar" class="btn btn-primary">NOVA VENDA</a></td>
             </form>
@@ -245,4 +246,3 @@
             })
          });
       </script>
-</html>

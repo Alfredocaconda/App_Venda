@@ -52,11 +52,7 @@ class VendaDao{
     #funcao para listar todos os produtos que estão no carrinho de compra
     public function selectVendas($nome){
         $valor=null;
-        if($nome == ""){
-            $sql = "SELECT idv, nome,descricao,nomec, qtdrequerida, totalCompra, datavenda, fatura, nomef FROM vvenda
-            order by idv desc ";
-            $valor=$this->conexao->prepare($sql);
-        }else{
+        
             $sql = "SELECT idv, qtdrequerida,descricao,nomec, totalCompra, datavenda, fatura, nomef, nome 
             FROM vvenda  where nome like ? or nomef like ? or fatura like ? order by idv desc ";
             $valor=$this->conexao->prepare($sql);
@@ -64,7 +60,6 @@ class VendaDao{
             $valor->bindValue(1,$pesquisar);
             $valor->bindValue(2,$pesquisar);
             $valor->bindValue(3,$pesquisar);
-        }
         $valor->execute();
         return $valor->fetchAll(PDO::FETCH_CLASS);
     }

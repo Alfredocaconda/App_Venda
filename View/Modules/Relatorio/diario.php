@@ -8,6 +8,7 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
+                              
                               <h2>Relatório Diario</h2>
                            </div>
                         </div>

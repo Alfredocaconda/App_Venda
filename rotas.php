@@ -29,6 +29,7 @@
         include "Controller/ImpressaoController.php";
 
         include "Controller/fechoDiario.php";
+        include "Controller/fechoPersonalizado.php";
 
         #==============================================================================================
         #====================== FIM DO CONTROLLER =====================================================
@@ -205,6 +206,9 @@
                 break;
                 case '/relatorioPersonalizado';
                 VendaController::personalizado();
+                break;
+                case '/relatorioPersonalizadoimpressao';
+                impressaoPersonalizado::impressaoPers();
                 break;
                 #================== INICIO DAS ROTAS DE PAGINAS NÃO EXISTENTE=========== 
                 #========================================================================================================

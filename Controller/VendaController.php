@@ -75,7 +75,13 @@
         include "Model/VendaModel.php";
         $modelagem=new VendaModel();
         #chamando as fucnoes das 
-        $modelagem->relatorioPersonalizado($_POST['nome']);
+        if (isset($_POST['nome'])) {
+            # code...
+            $modelagem->relatorioPersonalizado($_POST['nome']);
+        } else {
+            $modelagem->relatorioPersonalizado("");
+            # code...
+        }
         #incluindo o formulario para poder mostrar todos os produtos
         Middleware::auth();
         include 'View/Modules/Relatorio/personalizado.php';
