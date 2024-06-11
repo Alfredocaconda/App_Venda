@@ -9,14 +9,37 @@
                            <div class="page_title">
                               <h2>Informações</h2>
                            </div>
-                        </div>
+                           <div class="col-md-6 col-lg-3">
+         <div class="full counter_section margin_bottom_30">
+            <div class="couter_icon">
+               <div> 
+               <i class="fa fa-comments-o red_color"></i>
+               </div>
+            </div>
+               <div class="counter_no">
+               <div>
+                  <p class="total_no">
+                     <?php
+                     include "./Connection/conexao.php";
+                     // Consulta SQL para contar os usuários
+                        $sql = "SELECT COUNT(idv) as total_venda FROM vvenda";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                        // Exibe o número de usuários cadastrados
+                        $row = $result->fetch_assoc();
+                        echo "<h1>".$row["total_venda"]."</h1>";
+                        } else {
+                        echo "<h1>0</h1>";
+                        } 
+                     ?>
+                  </p>
+                  <p class="head_couter">Venda</p>
+               </div>
+      </div>
+   </div>
                      </div>
-                     
-   
+                  </div>
                      <!-- graph -->
-                    
-
-
                      <!-- end graph -->
                      <section class="content"  style="overflow-y: auto; overflow-x: hidden; height: 65vh;">
     <table class="table table-hover">
