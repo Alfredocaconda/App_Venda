@@ -52,9 +52,7 @@ class VendaDao{
     #funcao para listar todos os produtos que estão no carrinho de compra
     public function selectVendas($nome){
         $valor=null;
-        
-            $sql = "SELECT idv, qtdrequerida,descricao,nomec, totalCompra, datavenda, fatura, nomef, nome 
-            FROM vvenda  where nome like ? or nomef like ? or fatura like ? order by idv desc ";
+            $sql = "SELECT * FROM vvenda  where nome like ? or nomef like ? or fatura like ? order by idv desc ";
             $valor=$this->conexao->prepare($sql);
             $pesquisar = "%$nome%"; 
             $valor->bindValue(1,$pesquisar);

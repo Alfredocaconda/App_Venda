@@ -28,9 +28,10 @@
                      <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                <form class="d-flex" action="/relatorioPersonalizado" method="POST" role="search">
-               <input type="text" name="valor" class="valor"  placeholder="PRODUTO/FUNCIONÁRIO" autofocus>
+               <input type="text" name="nome" class="valor"  placeholder="PRODUTO/FUNCIONÁRIO" autofocus>
                      <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                     <a href="" target="_blank" style="display: none;" class="btn btn-primary" id="btnVender" >IMPRIMIR</a>
+                     <a href="" target="_blank" style="display: none;" class="btn btn-primary"
+                      id="btnVender" >IMPRIMIR</a>
                </form>
             </div>
             </nav>

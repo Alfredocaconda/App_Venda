@@ -2,28 +2,39 @@
    require_once "./View/Cabecalho/header.php";
 ?>
                <!-- end topbar -->
+               <style>
+                   .pesquisa{
+            width: 50%;
+            display:flex;
+            height: 30px;
+            margin-left: 50%;
+            margin-top: 50px;
+            input{
+               width: 500%;
+               text-align: center;
+            }
+         }
+               </style>
                <!-- dashboard inner -->
                <div class="midde_cont">
                   <div class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              
-                              <h2>Relatório Diario</h2>
+                              <h2>Relatório Personalizado</h2>
                            </div>
                         </div>
                      </div>
                      <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                <form class="d-flex" action="/relatoriodiario" method="POST" role="search">
-                  <input class="form-control me-2" id="valor" type="date" name="data" aria-label="Search" autofocus>
+               <input type="date" name="data" class="valor"   autofocus>
                      <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                     <th style="margin-left: 20px;" ><a href="/relatoriodiario/imprimir"target="_blank"
-                      class="btn btn-primary"  >IMPRIMIR</a></th>
+                     <a href="" target="_blank" style="display: none;" class="btn btn-primary"
+                      id="btnVender" >IMPRIMIR</a>
                </form>
             </div>
             </nav>
-
                     <!-- #=====-->
               <!-- end graph -->
               <section class="content"  style="overflow-y: auto; overflow-x: hidden; height: 65vh;">
@@ -53,13 +64,17 @@
 
                      </div>
                   <!-- footer -->
-                  <script>
+                  <?php include "./View/Cabecalho/script.php" ?>
+      <script>
          $(function(){
             $(".valor").change(function(){
-               var data=$("#valor").val()
-               if (data>0) {
+               var valor_recebido=$(".valor").val()
+               if (valor_recebido!="") {
                      $("#btnVender").css('display','flex')
-                     $("#btnVender").prop('href',"/relatoriodiario/imprimir?data="+data)
+                     $("#btnVender").prop('href',"/relatoriodiario/imprimir?data="+valor_recebido)
+                    
+                     trocando=valor_recebido-total
+                     $(".troco b").text("Troco:"+trocando)
                   }else{
                      $("#btnVender").css('display','none')
                   }
