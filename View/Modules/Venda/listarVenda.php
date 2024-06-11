@@ -4,23 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Ponto De Venda</title>
-   <!-- site icon -->
-      <link rel="icon" href="../../../fevicon.png" type="image/png" />
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="../../../css/bootstrap.min.css" />
-      <!-- site css -->
-      <link rel="stylesheet" href="../../../style.css" />
-      <!-- responsive css -->
-      <link rel="stylesheet" href="../../../css/responsive.css" />
-      <!-- color css -->
-      <link rel="stylesheet" href="../../../css/colors.css" />
-      <!-- select bootstrap -->
-      <link rel="stylesheet" href="../../../css/bootstrap-select.css" />
-      <!-- scrollbar css -->
-      <link rel="stylesheet" href="../../../css/perfect-scrollbar.css" />
-      <!-- custom css -->
-      <link rel="stylesheet" href="../../../css/custom.css" />
-   
+   <?php include "./View/Cabecalho/link.php" ?>
       <style>
          .tabela{
             width: 50%;
@@ -148,7 +132,7 @@
                   <p class="cor_nome"><?php echo $_SESSION['nome'] ?></p>
                        </div>   
                      <div>
-                     <a href="/" class="btn btn-danger">SAIR</a>
+                     <a href="/logout" class="btn btn-danger">SAIR</a>
                        </div>   
                   </div>
                </div>
@@ -169,22 +153,19 @@
 <table class="table table-hover">
         <tr>
             <th scope="col">NOME</th>
-            <th scope="col">DESCRICAO</th>
-            <th scope="col">CODIGO</th>
             <th scope="col">PREÇO</th>
             <th scope="col">QTD</th>
         </tr>
         <?php foreach ($model->linhas as $item): ?>
         <tr>
         <form action="/Venda/save" method="post">
+            <input type="hidden" name="id_carrinho" value="<?=$item->id_carrinho?>">
             <input type="hidden" name="idp" value="<?=$item->idp?>">
             <input type="hidden" name="idstock" value="<?=$item->idstock?>">
             <input type="hidden" name="preco_venda" value="<?=$item->preco_venda?>">
             <input type="hidden" name="codigo_barra" value="<?=$item->codigo_barra?>">
             <input type="hidden" name="nomes" value="<?=$item->nome?>">
-            <td scope="col" style="width: 150px;"><?=$item->nome?> </td>
-            <td scope="col" style="width: 150px;"><?=$item->descricao?> </td>
-            <td scope="col" style="width: 100px;"><?=$item->codigo_barra?> </td>
+            <td scope="col" style="width: 150px;"><?=$item->nome." ".$item->descricao?> </td>
             <td scope="col"style="width: 150px;"><?=number_format($item->preco_venda)."KZ"?> </td>
             <td scope="col" style="width: 100px;"><?=$item->qtd?> </td>
             <td scope="col" style="width: 150px;"><input type="text" name="quantidade"
@@ -211,6 +192,7 @@
          <?php $soma = 0;
          $troco=0;?>
         <?php foreach ($model2->linha as $itens): ?>
+            <input type="hidden" name="idf" value="<?=$_SESSION['idf']?>">
             <input type="hidden" name="id_carrinho" value="<?=$itens->id_carrinho?>">
             <input type="hidden" name="quantidade" value="<?=$itens->quantidade?>">
             <input type="hidden" name="preco" value="<?=$itens->preco?>">
@@ -223,16 +205,18 @@
          </tr>
         <?php endforeach ?>
         <div class="valores">
-           <input type="hidden" name="soma" value="<?php echo $soma ?>">
+           <input type="hidden" name="soma" id="total" value="<?php echo $soma ?>">
         <p class="total"><b>Total: <?php echo number_format($soma)."KZ"?></b></p> 
-        <p class="total"><b>Troco: <?php echo number_format($troco)."KZ"?></b></p>
+        <p class="total troco"><b>Troco: </b></p>
         </div>
         <div class="input">
         <input type="text" name="cliente" class="" placeholder="NOME DO CLIENTE">
-         <input type="text" name="valor" class="" placeholder="VALOR A PAGAR">
+         <input type="number" name="valor" class="valor" placeholder="VALOR A PAGAR">
       </div>
       <br>
-            <td scope="col"><button class="btn btn-success" onclick="openNewTab()">VENDER</button></td>
+            <td scope="col">
+            <a href="" target="_blank" style="display: none;" class="btn btn-success" id="btnVender" >VENDER</a>
+         </td>
             <td scope="col"><a href="/fatura/performa"target="_blank" class="btn btn-primary">PERFORMA</a></td>
             <td scope="col"><a href="/venda/Apagar" class="btn btn-primary">NOVA VENDA</a></td>
             </form>
@@ -242,26 +226,23 @@
     </div>
    </body>
   <!-- jQuery -->
-  <script src="../../../js/jquery.min.js"></script>
-      <script src="../../../js/popper.min.js"></script>
-      <script src="../../../js/bootstrap.min.js"></script>
-      <!-- wow animation -->
-      <script src="../../../js/animate.js"></script>
-      <!-- select country -->
-      <script src="../../../js/bootstrap-select.js"></script>
-      <!-- owl carousel -->
-      <script src="../../../js/owl.carousel.js"></script> 
-      <!-- chart js -->
-      <script src="../../../js/Chart.min.js"></script>
-      <script src="../../../js/Chart.bundle.min.js"></script>
-      <script src="../../../js/utils.js"></script>
-      <script src="../../../js/analyser.js"></script>
-      <!-- nice scrollbar -->
-      <script src="../../../js/perfect-scrollbar.min.js"></script>
+  <?php include "./View/Cabecalho/script.php" ?>
       <script>
-         var ps = new PerfectScrollbar('#sidebar');
+         $(function(){
+            $(".valor").change(function(){
+               var valor_recebido=$(".valor").val()
+               var total=$("#total").val()
+               console.log(valor_recebido)
+               console.log(total)
+               if (valor_recebido>=total) {
+                     $("#btnVender").css('display','flex')
+                     $("#btnVender").prop('href',"/impressao/fatura?somatorio="+valor_recebido)
+                    
+                     trocando=valor_recebido-total
+                     $(".troco b").text("Troco:"+trocando)
+                  }else{
+                     $("#btnVender").css('display','none')
+                  }
+            })
+         });
       </script>
-      <!-- custom js -->
-      <script src="../../../js/chart_custom_style1.js"></script>
-      <script src="../../../js/custom.js"></script>
-</html>
