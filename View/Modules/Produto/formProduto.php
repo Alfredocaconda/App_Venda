@@ -46,11 +46,6 @@ try {
         placeholder="DIGITE AQUI O PRECO DA COMPRA" required>
         </div>
         <div class="col-md-6">
-        <label for="caducidade" class="form-label">DATA DE CADUCIDADE</label>
-        <input type="date" class="form-control" id="inputAddress"
-         value="<?= $model->caducidade ?>" name="caducidade">
-        </div>
-        <div class="col-md-6">
         <label for="codigo_barra" class="form-label">CODIGO DE BARRA</label>
         <input type="text" class="form-control" id="inputAddress"
          value="<?= $model->codigo_barra ?>" name="codigo_barra"

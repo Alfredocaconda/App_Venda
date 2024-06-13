@@ -29,7 +29,10 @@
         include "Controller/ImpressaoController.php";
 
         include "Controller/fechoDiario.php";
+
         include "Controller/fechoPersonalizado.php";
+
+        include "Controller/DevolucaoController.php";
 
         #==============================================================================================
         #====================== FIM DO CONTROLLER =====================================================
@@ -195,7 +198,12 @@
            
                 #================== FIM DAS ROTAS DA CATEGORIA=========== 
                 #========================================================================================================
-                
+                case '/devolucao':
+                    DevolucaoController::index(); 
+                    break;
+                case '/apagarDevolucao':
+                    DevolucaoController::delete(); 
+                    break;
                 #==============Rota de relatorio================================
                 #=================================================================================
                 case '/relatoriodiario';

@@ -41,7 +41,6 @@ public static function save(){
     $model->nome=$_POST['nome'];
     $model->valor_compra=$_POST['preco'];
     $model->codigo_barra=$_POST['codigo_barra'];
-    $model->caducidade=$_POST['caducidade'];
     $model->descricao=$_POST['descricao'];
     $model->idcategoria=$_POST['idcategoria'];
     $model->save();

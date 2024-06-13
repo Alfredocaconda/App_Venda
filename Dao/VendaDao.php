@@ -73,7 +73,7 @@ class VendaDao{
     }
    
         #funcao para vender os produtos 
-        public function vender(VendaModel $model) {
+        public function vender() {
             $funcionario=$_SESSION['idf'];
             $carrinho= new VendaDao;
             foreach ($carrinho->selectCarrinho() as $produto) {

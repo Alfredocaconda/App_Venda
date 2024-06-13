@@ -210,7 +210,6 @@
         <p class="total troco"><b>Troco: </b></p>
         </div>
         <div class="input">
-        <input type="text" name="cliente" class="" placeholder="NOME DO CLIENTE">
          <input type="number" name="valor" class="valor" placeholder="VALOR A PAGAR">
       </div>
       <br>

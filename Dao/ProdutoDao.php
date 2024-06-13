@@ -8,20 +8,19 @@ class ProdutoDao{
         $this->conexao=new PDO($dados,'root','');
     }
     public function insert(ProdutoModel $model){
-        $sql="INSERT INTO Produto (nome, descricao, idcategoria, valor_compra, codigo_barra, caducidade, idf) 
-        values (?,?,?,?,?,?,?)";
+        $sql="INSERT INTO Produto (nome, descricao, idcategoria, valor_compra, codigo_barra,idf) 
+        values (?,?,?,?,?,?)";
         $valor=$this->conexao->prepare($sql);
         $valor->bindValue(1,$model->nome);
         $valor->bindValue(2,$model->descricao);
         $valor->bindValue(3,$model->idcategoria);
         $valor->bindValue(4,$model->valor_compra);
         $valor->bindValue(5,$model->codigo_barra);
-        $valor->bindValue(6,$model->caducidade);
-        $valor->bindValue(7,$model->idf);
+        $valor->bindValue(6,$model->idf);
         $valor->execute();
     }
     public function update(ProdutoModel $model){
-        $sql="UPDATE produto SET nome=?, descricao=?, idcategoria=?, valor_compra=?, codigo_barra=?, caducidade=?
+        $sql="UPDATE produto SET nome=?, descricao=?, idcategoria=?, valor_compra=?, codigo_barra=?
         ,idf=? WHERE idp=?";
         $valor=$this->conexao->prepare($sql);
         $valor->bindValue(1,$model->nome);
@@ -29,9 +28,8 @@ class ProdutoDao{
         $valor->bindValue(3,$model->idcategoria);
         $valor->bindValue(4,$model->valor_compra);
         $valor->bindValue(5,$model->codigo_barra);
-        $valor->bindValue(6,$model->caducidade);
-        $valor->bindValue(7,$model->idf);
-        $valor->bindValue(8,$model->idp);
+        $valor->bindValue(6,$model->idf);
+        $valor->bindValue(7,$model->idp);
         $valor->execute();
     }
     public function select($nome){

@@ -98,39 +98,6 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-comments-o red_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                 <p class="total_no">
-                                        <?php
-                                        $data_atual=date("Y-m-d");
-                                          // Consulta SQL para contar os usuários
-                                          $sql = "SELECT COUNT(idp) as total_produto FROM produto where caducidade<='$data_atual'";
-                                          $result = $conn->query($sql);
-                                          if ($result->num_rows > 0) {
-                                             // Exibe o número de usuários cadastrados
-                                             $row = $result->fetch_assoc();
-                                             echo "<h1>".$row["total_produto"]."</h1>";
-                                          } else {
-                                             echo "<h1>0</h1>";
-                                          } 
-                                       ?>
-                                    </p>
-                                    <p class="head_couter">CADUCADOS</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                    
-                    
-                 
                <!-- end dashboard inner -->
                
                      <!-- graph -->
@@ -138,7 +105,6 @@
                      <section class="content"  style="overflow-y: auto; overflow-x: hidden; height: 65vh;">
     <table class="table table-hover">
         <tr>
-            <th  scope="col">CODIGO</th>
             <th  scope="col">NOME/DESCRIÇÃO/CATEGORIA</th>
             <th  scope="col">QTD VENDIDO</th>
             <th  scope="col">VALOR TOTAL</th>
@@ -148,7 +114,6 @@
         </tr>
         <?php foreach ($modelagem->listarVendas as $item): ?>
          <tr>
-            <td scope="col" ><?=$item->idv?> </td>
             <td scope="col" ><?=$item->nome."/".$item->descricao."/".$item->nomec?> </td>
             <td scope="col" ><?=$item->qtdrequerida?> </td>
             <td scope="col" ><?=number_format($item->totalCompra)."KZ"?> </td>

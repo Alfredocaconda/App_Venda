@@ -1,7 +1,7 @@
 <?php
 
 class ProdutoModel{
-    public $idp,$idf,$nome,$descricao,$idcategoria,$caducidade,$codigo_barra,$valor_compra;
+    public $idp,$idf,$nome,$descricao,$idcategoria,$codigo_barra,$valor_compra;
     public $linhas;
     
     public function save(){

@@ -76,7 +76,7 @@
                      </li>
                      <li><a href="/Venda"><i class="fa fa-bar-chart-o green_color"></i> <span>Ponto De Venda</span></a></li>
                      <li>
-                        <a href="/" class="dropdown-toggle">
+                        <a href="/devolucao" class="dropdown-toggle">
                            <i class="fa fa-object-group blue2_color"></i> <span>Devolução</span></a>
                      </li>
                   </ul>
